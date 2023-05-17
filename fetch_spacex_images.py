@@ -29,4 +29,5 @@ def main():
     fetch_spacex_last_launch(args.id)
 
 
-main()
+if __name__ == '__main__':
+    main()
