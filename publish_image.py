@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from random import randint
 
 
-def publish_photo(tg_token, chat_token, image_name=''):
+def publish_image(tg_token, chat_token, image_name=''):
     image_list = []
     bot = telegram.Bot(token=tg_token)
     if not image_name:
@@ -24,7 +24,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('image_name', nargs='?')
     args = parser.parse_args()
-    publish_photo(tg_token, chat_token, args.image_name)
+    publish_image(tg_token, chat_token, args.image_name)
 
 
 if __name__ == '__main__':

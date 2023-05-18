@@ -1,22 +1,22 @@
 import requests
 import os
 import datetime
-from download_jpg_and_file_extension import *
+from download_image_and_file_extension import *
 from dotenv import load_dotenv
 
 
 def fetch_epic(token):
-    jpeg_list = []
+    image_list = []
     response = requests.get('https://api.nasa.gov/EPIC/api/natural', {'count': 10, 'api_key': token})
     response.raise_for_status()
     json_list = response.json()
-    for jpeg in json_list:
-        date_jpeg, name_jpeg = datetime.datetime.fromisoformat(jpeg["date"]), jpeg['image']
-        jpeg_list.append('{}{}{}{}{}'.format('https://api.nasa.gov/EPIC/archive/natural/', str(date_jpeg.strftime("%Y/%m/%d")), '/png/', name_jpeg, '.png'))
-    for jpeg_num, jpeg in enumerate(jpeg_list):
-        response = requests.get(jpeg, {'api_key': token})
-        filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_epic_', str(jpeg_num), file_ext(jpeg)))
-        dwnld_jpg(response.url, filename)
+    for image in json_list:
+        date_image, name_image = datetime.datetime.fromisoformat(image["date"]), image['image']
+        image_list.append('{}{}{}{}{}'.format('https://api.nasa.gov/EPIC/archive/natural/', str(date_image.strftime("%Y/%m/%d")), '/png/', name_image, '.png'))
+    for image_num, image in enumerate(image_list):
+        response = requests.get(image, {'api_key': token})
+        filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_epic_', str(image_num), file_ext(image)))
+        dwnld_image(response.url, filename)
 
 
 def main():

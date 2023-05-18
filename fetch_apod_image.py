@@ -1,7 +1,7 @@
 import requests
 import os
 from urllib.parse import urlparse, unquote
-from download_jpg_and_file_extension import *
+from download_image_and_file_extension import *
 from dotenv import load_dotenv
 
 
@@ -9,15 +9,15 @@ APOD_URL = 'https://api.nasa.gov/planetary/apod'
 
 
 def fetch_apod(header):
-    jpeg_list = []
+    image_list = []
     response = requests.get(APOD_URL, header)
     response.raise_for_status()
     json_list = response.json()
-    for jpeg in json_list:
-        jpeg_list.append(jpeg["url"])
-    for jpeg_num, jpeg in enumerate(jpeg_list):
-        filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_apod_', str(jpeg_num), file_ext(jpeg)))
-        dwnld_jpg(jpeg, filename)
+    for image in json_list:
+        image_list.append(image["url"])
+    for image_num, image in enumerate(image_list):
+        filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_apod_', str(image_num), file_ext(image)))
+        dwnld_image(image, filename)
 
 
 def main():

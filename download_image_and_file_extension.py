@@ -3,7 +3,7 @@ import os
 from urllib.parse import urlparse, unquote
 
 
-def dwnld_jpg(url, path):
+def dwnld_image(url, path):
     response = requests.get(url)
     response.raise_for_status()
     with open(path, 'wb') as file:

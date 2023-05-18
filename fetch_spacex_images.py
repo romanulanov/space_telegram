@@ -2,7 +2,7 @@ import requests
 import os
 import argparse
 from urllib.parse import urlparse, unquote
-from download_jpg_and_file_extension import *
+from download_image_and_file_extension import *
 
 
 SPACEX_URL = 'https://api.spacexdata.com/v5/launches/'
@@ -14,10 +14,10 @@ def fetch_spacex_last_launch(id=''):
     else:
         response = requests.get('{}{}'.format(SPACEX_URL, id))
     response.raise_for_status()
-    jpeg_list = response.json()["links"]["flickr"]['original']
-    for jpeg_num, jpeg in enumerate(jpeg_list):
-        filename = os.path.join('{}{}{}{}'.format('images/', 'spacex', str(jpeg_num), file_ext(jpeg)))
-        dwnld_jpg(jpeg, filename)
+    image_list = response.json()["links"]["flickr"]['original']
+    for image_num, image in enumerate(image_list):
+        filename = os.path.join('{}{}{}{}'.format('images/', 'spacex', str(image_num), file_ext(image)))
+        dwnld_jpg(image, filename)
 
 
 def main():

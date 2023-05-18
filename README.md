@@ -42,7 +42,7 @@ pip install python-dotenv
 Все скаченные фотографии будут храниться в папке /images внутри проекта.
 Для публикации конкретной фотографии в телеграм канале укажите в окружении имя существующего фото, например:
 
-    python publish_photo.py spacex0.jpeg
+    python publish_image.py spacex0.jpeg
 Для автоматической публикации фото в телеграм канале напишите в окружении:
 
     python auto_publish.py
