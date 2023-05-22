@@ -17,7 +17,7 @@ def fetch_spacex_last_launch(id=''):
     image_list = response.json()["links"]["flickr"]['original']
     for image_num, image in enumerate(image_list):
         filename = os.path.join('{}{}{}{}'.format('images/', 'spacex', str(image_num), file_ext(image)))
-        dwnld_jpg(image, filename)
+        dwnld_image(image, filename)
 
 
 def main():
