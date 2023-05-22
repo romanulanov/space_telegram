@@ -8,11 +8,8 @@ from download_image_and_file_extension import dwnld_image, get_file_ext
 SPACEX_URL = 'https://api.spacexdata.com/v5/launches/'
 
 
-def fetch_spacex_last_launch(launch_id=''):
-    if not launch_id:
-        response = requests.get('{}{}'.format(SPACEX_URL, '5eb87ce4ffd86e000604b338'))
-    else:
-        response = requests.get('{}{}'.format(SPACEX_URL, launch_id))
+def fetch_spacex_last_launch(launch_id='5eb87ce4ffd86e000604b338'):
+    response = requests.get('{}{}'.format(SPACEX_URL, launch_id))
     response.raise_for_status()
     image_list = response.json()["links"]["flickr"]['original']
     for image_num, image in enumerate(image_list):
@@ -21,8 +18,7 @@ def fetch_spacex_last_launch(launch_id=''):
 
 
 def main():
-    if not os.path.exists('images/'):
-        os.makedirs('images/')
+    os.makedirs('images/', exist_ok=True)
     parser = argparse.ArgumentParser()
     parser.add_argument('id', nargs='?')
     args = parser.parse_args()

@@ -3,6 +3,7 @@ import os
 import random
 from dotenv import load_dotenv
 from time import sleep
+from download_image_and_file_extension import get_images
 
 
 def main():
@@ -11,15 +12,12 @@ def main():
     chat_token = os.environ["TG_CHAT_ID"]
     bot = telegram.Bot(token=tg_token)
     rate = os.environ["RATE"]
-    image_list = []
-    for address, dirs, files in os.walk("images/"):
-        for name in files:
-            image_list.append(os.path.join(address, name))
+    images = get_images()
     while True:
-        for image in image_list:
+        for image in images:
             bot.send_document(chat_id=chat_token, document=open(image, 'rb'))
             sleep(int(rate)*3600)
-        random.shuffle(image_list)
+        random.shuffle(images)
 
 
 if __name__ == '__main__':

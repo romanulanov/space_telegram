@@ -3,16 +3,15 @@ import telegram
 import os
 from dotenv import load_dotenv
 from random import randint
+from download_image_and_file_extension import get_images
+
 
 
 def publish_image(tg_token, chat_token, image_name=''):
-    image_list = []
     bot = telegram.Bot(token=tg_token)
     if not image_name:
-        for address, dirs, files in os.walk("images/"):
-            for name in files:
-                image_list.append(os.path.join(address, name))
-        bot.send_document(chat_id=chat_token, document=open(image_list[randint(0, len(image_list)-1)], 'rb'))
+        images = get_images()
+        bot.send_document(chat_id=chat_token, document=open(images[randint(0, len(images)-1)], 'rb'))
     else:
         bot.send_document(chat_id=chat_token, document=open('{}{}'.format('images/', image_name), 'rb'))
 

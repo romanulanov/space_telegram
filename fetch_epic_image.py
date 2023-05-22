@@ -21,8 +21,7 @@ def fetch_epic(token):
 
 
 def main():
-    if not os.path.exists('images/'):
-        os.makedirs('images/')
+    os.makedirs('images/', exist_ok=True)
     token = os.environ["APOD_TOKEN"]
     fetch_epic(token)
 
