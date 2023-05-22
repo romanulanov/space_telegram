@@ -20,7 +20,7 @@ def publish_image(tg_token, chat_token, image_name=''):
 def main():
     load_dotenv()
     tg_token = os.environ["TG_TOKEN"]
-    chat_token = os.environ["CHAT_ID"]
+    chat_token = os.environ["TG_CHAT_ID"]
     parser = argparse.ArgumentParser()
     parser.add_argument('image_name', nargs='?')
     args = parser.parse_args()

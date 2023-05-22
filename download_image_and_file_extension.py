@@ -10,6 +10,6 @@ def dwnld_image(url, path):
         file.write(response.content)
 
 
-def file_ext(url):
+def get_file_ext(url):
     url = urlparse(unquote(url))
     return os.path.splitext(url.path)[1]

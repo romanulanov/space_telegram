@@ -8,7 +8,7 @@ from time import sleep
 def main():
     load_dotenv()
     tg_token = os.environ["TG_TOKEN"]
-    chat_token = os.environ["CHAT_ID"]
+    chat_token = os.environ["TG_CHAT_ID"]
     bot = telegram.Bot(token=tg_token)
     rate = os.environ["RATE"]
     image_list = []
