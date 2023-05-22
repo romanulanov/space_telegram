@@ -1,7 +1,7 @@
 import requests
 import os
 from urllib.parse import urlparse, unquote
-from download_image_and_file_extension import *
+from download_image_and_file_extension import dwnld_image, file_ext
 from dotenv import load_dotenv
 
 

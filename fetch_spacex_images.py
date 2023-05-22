@@ -2,7 +2,7 @@ import requests
 import os
 import argparse
 from urllib.parse import urlparse, unquote
-from download_image_and_file_extension import *
+from download_image_and_file_extension import dwnld_image, file_ext
 
 
 SPACEX_URL = 'https://api.spacexdata.com/v5/launches/'
