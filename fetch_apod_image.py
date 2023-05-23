@@ -11,10 +11,9 @@ APOD_URL = 'https://api.nasa.gov/planetary/apod'
 def fetch_apod(header):
     response = requests.get(APOD_URL, header)
     response.raise_for_status()
-    json_list = response.json()
-    print(json_list)
+    response = response.json()
     images = []
-    for image in json_list:
+    for image in response:
         if image["media_type"] == "image":
             if image["hdurl"]:
                 images.append(image["hdurl"])
@@ -25,8 +24,8 @@ def fetch_apod(header):
 
 
 def main():
-    os.makedirs('images/', exist_ok=True)
     load_dotenv()
+    os.makedirs('images/', exist_ok=True)
     apod_token = os.environ["APOD_TOKEN"]
     fetch_apod({'count': 30, 'api_key': apod_token})
 

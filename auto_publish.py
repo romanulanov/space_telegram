@@ -15,7 +15,8 @@ def main():
     images = get_images()
     while True:
         for image in images:
-            bot.send_document(chat_id=chat_token, document=open(image, 'rb'))
+            with open(image, 'rb') as image:
+                bot.send_document(chat_id=chat_token, document=image)
             sleep(int(rate)*3600)
         random.shuffle(images)
 

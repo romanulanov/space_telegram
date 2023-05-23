@@ -6,14 +6,14 @@ from dotenv import load_dotenv
 
 
 def fetch_epic(token):
-    image_list = []
+    images = []
     response = requests.get('https://api.nasa.gov/EPIC/api/natural', {'count': 10, 'api_key': token})
     response.raise_for_status()
-    json_list = response.json()
-    for image in json_list:
+    response = response.json()
+    for image in response:
         date_image, name_image = datetime.datetime.fromisoformat(image["date"]), image['image']
-        image_list.append('{}{}{}{}{}'.format('https://api.nasa.gov/EPIC/archive/natural/', date_image.strftime("%Y/%m/%d"), '/png/', name_image, '.png'))
-    for image_num, image in enumerate(image_list):
+        images.append('{}{}{}{}{}'.format('https://api.nasa.gov/EPIC/archive/natural/', date_image.strftime("%Y/%m/%d"), '/png/', name_image, '.png'))
+    for image_num, image in enumerate(images):
         response = requests.get(image, {'api_key': token})
         response.raise_for_status()
         filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_epic_', str(image_num), get_file_ext(image)))
@@ -21,8 +21,9 @@ def fetch_epic(token):
 
 
 def main():
+    load_dotenv()
     os.makedirs('images/', exist_ok=True)
-    token = os.environ["APOD_TOKEN"]
+    token = os.environ['APOD_TOKEN']
     fetch_epic(token)
 
 
