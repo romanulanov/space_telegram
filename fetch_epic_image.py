@@ -1,7 +1,7 @@
 import requests
 import os
 import datetime
-from download_image_and_file_extension import dwnld_image, get_file_ext
+from download_image_and_file_extension_and_get_images import dwnld_image, get_file_ext
 from dotenv import load_dotenv
 
 

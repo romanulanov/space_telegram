@@ -3,7 +3,7 @@ import os
 import random
 from dotenv import load_dotenv
 from time import sleep
-from download_image_and_file_extension import get_images
+from download_image_and_file_extension_and_get_images import get_images
 
 
 def main():

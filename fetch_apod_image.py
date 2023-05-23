@@ -1,7 +1,7 @@
 import requests
 import os
 from urllib.parse import urlparse, unquote
-from download_image_and_file_extension import dwnld_image, get_file_ext
+from download_image_and_file_extension_and_get_images import dwnld_image, get_file_ext
 from dotenv import load_dotenv
 
 
@@ -12,10 +12,14 @@ def fetch_apod(header):
     response = requests.get(APOD_URL, header)
     response.raise_for_status()
     json_list = response.json()
-    image_list = []
+    print(json_list)
+    images = []
     for image in json_list:
-        image_list.append(image["url"])
-    for image_num, image in enumerate(image_list):
+        if image["media_type"] == "image":
+            if image["hdurl"]:
+                images.append(image["hdurl"])
+            images.append(image["url"])
+    for image_num, image in enumerate(images):
         filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_apod_', str(image_num), get_file_ext(image)))
         dwnld_image(image, filename)
 
