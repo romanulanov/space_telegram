@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 
 def fetch_epic(token):
     images = []
-    response = requests.get('https://api.nasa.gov/EPIC/api/natural', {'count': 10, 'api_key': token})
+    count = 10
+    response = requests.get('https://api.nasa.gov/EPIC/api/natural', {'count': count, 'api_key': token})
     response.raise_for_status()
     response = response.json()
     for image in response:
@@ -16,7 +17,7 @@ def fetch_epic(token):
     for image_num, image in enumerate(images):
         response = requests.get(image, {'api_key': token})
         response.raise_for_status()
-        filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_epic_', str(image_num), get_file_ext(image)))
+        filename = os.path.join('{}{}{}{}'.format('images/', 'nasa_epic_', image_num, get_file_ext(image)))
         dwnld_image(response.url, filename)
 
 

@@ -1,5 +1,6 @@
 import requests
 import os
+import telegram
 from urllib.parse import urlparse, unquote
 
 
@@ -21,3 +22,9 @@ def dwnld_image(url, path):
 def get_file_ext(url):
     url = urlparse(unquote(url))
     return os.path.splitext(url.path)[1]
+
+
+def send_message(tg_token, chat_token, file):
+    bot = telegram.Bot(token=tg_token)
+    with open(file, 'rb') as image:
+        bot.send_document(chat_id=chat_token, document=image)
