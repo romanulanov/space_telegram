@@ -1,3 +1,4 @@
+from uu import Error
 import requests
 import os
 import telegram
@@ -25,6 +26,9 @@ def get_file_ext(url):
 
 
 def send_message(tg_token, chat_token, file):
+    
     bot = telegram.Bot(token=tg_token)
     with open(file, 'rb') as image:
         bot.send_document(chat_id=chat_token, document=image)
+    
+    
