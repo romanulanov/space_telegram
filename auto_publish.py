@@ -1,3 +1,4 @@
+import requests
 import telegram
 import os
 import random
@@ -13,10 +14,13 @@ def main():
     rate = 4
     imagepaths = get_images()
     while True:
-        for image in imagepaths:
-            send_message(tg_token, chat_token, image)
-            sleep(rate*3600)
-        random.shuffle(imagepaths)
+        try:
+            for image in imagepaths:
+                send_message(tg_token, chat_token, image)
+                sleep(rate*3600)
+            random.shuffle(imagepaths)
+        except telegram.error.NetworkError:
+            pass
 
 
 if __name__ == '__main__':
