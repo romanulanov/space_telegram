@@ -6,7 +6,12 @@ import logging
 from time import sleep
 from dotenv import load_dotenv
 from time import sleep
+import sys
 from download_image_and_file_extension_and_get_images import get_images, send_message
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def main():
@@ -22,8 +27,9 @@ def main():
                 sleep(rate*3600)
             random.shuffle(imagepaths)
         except telegram.error.NetworkError:
-            sleep(60)
-            pass
+            logging.error('Ошибка сети. Попробую переподключиться через минуту.')
+            eprint(sys.stderr)
+            sleep(60)            pass
 
 
 if __name__ == '__main__':
