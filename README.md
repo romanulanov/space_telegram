@@ -17,8 +17,8 @@ pip install -r requirements.txt
 ```
 pip install python-dotenv
 ```
-Он позволяет загружать переменные окружения из файла .env в корневом каталоге приложения. Проект будет использовать функцию getenv() для поиска переменной окружения APOD_TOKEN. [Как сгенерировать APOD_TOKEN смотри здесь.](https://api.nasa.gov/) Также понадобится токен телеграм бота TG_TOKEN (см. [инструкция](https://web7.pro/kak-poluchit-token-bota-telegram-api/)). Для работы потребуется создать файл .env и задать в нём значение переменных APOD_TOKEN и TG_TOKEN, например:
-    APOD_TOKEN = 66e6428d0f7
+Он позволяет загружать переменные окружения из файла .env в корневом каталоге приложения. Проект будет использовать функцию getenv() для поиска переменной окружения NASA_TOKEN. [Как сгенерировать NASA_TOKEN смотри здесь.](https://api.nasa.gov/) Также понадобится токен телеграм бота TG_TOKEN (см. [инструкция](https://web7.pro/kak-poluchit-token-bota-telegram-api/)). Для работы потребуется создать файл .env и задать в нём значение переменных NASA_TOKEN и TG_TOKEN, например:
+    NASA_TOKEN = 66e6428d0f7
     TG_TOKEN = 613188451:ACA_8r71xAEZ5u-ue4AfU6mn1XAe3-V1F28
 Для постинга фото в телеграм канал сделайте бота администратором канала и укажите в TG_CHAT_ID адрес канала:
     TG_CHAT_ID = @spacespacspace
@@ -31,7 +31,7 @@ pip install python-dotenv
 Чтобы скачать фото конкретного полёта укажите id полёта Spacex в окружении:
     
     python fetch_spacex_images.py 5eb87ce4ffd86e000604b338
-Чтобы скачать 30 фото APOD с сайта Nasa напишите в окружении:
+Чтобы скачать 30 фото NASA с сайта Nasa напишите в окружении:
 
     python fetch_apod_image.py
 Для скачивания другого количества фотографий поменяйте в python fetch_apod_image.py значение переменной count (по умолчанию 30). Чтобы скачать фото Земли с сайта Nasa напишите в окружении:

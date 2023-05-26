@@ -25,9 +25,9 @@ def fetch_apod(header):
 def main():
     load_dotenv()
     os.makedirs('images/', exist_ok=True)
-    apod_token = os.environ["APOD_TOKEN"]
+    nasa_token = os.environ["NASA_TOKEN"]
     count = 30
-    fetch_apod({'count': count, 'api_key': apod_token})
+    fetch_apod({'count': count, 'api_key': nasa_token})
 
 
 if __name__ == '__main__':

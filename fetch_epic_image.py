@@ -24,8 +24,8 @@ def fetch_epic(token):
 def main():
     load_dotenv()
     os.makedirs('images/', exist_ok=True)
-    token = os.environ['APOD_TOKEN']
-    fetch_epic(token)
+    nasa_token = os.environ['NASA_TOKEN']
+    fetch_epic(nasa_token)
 
 
 if __name__ == '__main__':
