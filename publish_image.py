@@ -1,5 +1,4 @@
 import argparse
-import telegram
 import os
 from dotenv import load_dotenv
 from random import randint

@@ -1,4 +1,3 @@
-import requests
 import telegram
 import os
 import random
