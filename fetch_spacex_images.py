@@ -7,25 +7,23 @@ from download_image_and_file_extension_and_get_images import dwnld_image, get_fi
 SPACEX_URL = 'https://api.spacexdata.com/v5/launches/'
 
 
-def fetch_spacex_last_launch(launch_id='5eb87ce4ffd86e000604b338'):
+def fetch_spacex_last_launch(path, launch_id):
     response = requests.get(f"{SPACEX_URL}{launch_id}")
     response.raise_for_status()
     images = response.json()["links"]["flickr"]['original']
     for image_num, image in enumerate(images):
-        filename = os.path.join('{}{}{}{}'.format('images/', 'spacex', image_num, get_file_ext(image)))
+        filename = os.path.join('{}{}{}{}'.format(path, 'spacex', image_num, get_file_ext(image)))
         dwnld_image(image, filename)
 
 
 def main():
-    os.makedirs('images/', exist_ok=True)
     parser = argparse.ArgumentParser()
-    parser.add_argument('id', nargs='?')
+    parser.add_argument('--path', default='images', help='Введите название папки (по умолчанию images)')
+    parser.add_argument('--id', default='5eb87ce4ffd86e000604b338', help='Введите id полёта, фото которого надо скачать (по умолчанию 5eb87ce4ffd86e000604b338)')
     args = parser.parse_args()
-    if args.id:
-        fetch_spacex_last_launch(args.id)
-    else:
-        fetch_spacex_last_launch()
-
+    os.makedirs(args.path, exist_ok=True)
+    fetch_spacex_last_launch(f"{args.path}{'/'}", args.id) 
+ 
 
 if __name__ == '__main__':
     main()

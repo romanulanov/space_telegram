@@ -5,9 +5,9 @@ import telegram
 from urllib.parse import urlparse, unquote
 
 
-def get_images():
+def get_images(path):
     images = []
-    for address, dirs, files in os.walk("images/"):
+    for address, dirs, files in os.walk(path):
         for name in files:
             images.append(os.path.join(address, name))
     return images
@@ -26,9 +26,6 @@ def get_file_ext(url):
 
 
 def send_message(tg_token, chat_token, file):
-    
     bot = telegram.Bot(token=tg_token)
     with open(file, 'rb') as image:
         bot.send_document(chat_id=chat_token, document=image)
-    
-    
