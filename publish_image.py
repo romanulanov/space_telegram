@@ -12,7 +12,7 @@ def publish_image(tg_token, chat_token, path, image_name):
         images = get_images(path)
         send_message(tg_token, chat_token, random.choice(images))
     else:
-        send_message(tg_token, chat_token, '{}{}'.format('images/', image_name))
+        send_message(tg_token, chat_token, '{}{}'.format(path, image_name))
 
 
 def main():

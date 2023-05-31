@@ -16,12 +16,13 @@ def eprint(*args, **kwargs):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--path', default='images', help='Введите название папки, откуда будут браться фото (по умолчанию images)')
     parser.add_argument('--rate', default=4, help='Введите частоту публикаций (по умолчанию стоит раз в 4 часа)')
     args = parser.parse_args()
     load_dotenv()
     tg_token = os.environ["TG_TOKEN"]
     chat_token = os.environ["TG_CHAT_ID"]
-    imagepaths = get_images()
+    imagepaths = get_images(args.path)
     while True:
         try:
             for image in imagepaths:
