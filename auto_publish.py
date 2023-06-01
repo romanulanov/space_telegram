@@ -5,9 +5,8 @@ import random
 import logging
 from time import sleep
 from dotenv import load_dotenv
-from time import sleep
 import sys
-from download_image_and_file_extension_and_get_images import get_images, send_message
+from utils import get_images, send_message
 
 
 def eprint(*args, **kwargs):
@@ -17,7 +16,7 @@ def eprint(*args, **kwargs):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--path', default='images', help='Введите название папки, откуда будут браться фото (по умолчанию images)')
-    parser.add_argument('--rate', default=4, help='Введите частоту публикаций (по умолчанию стоит раз в 4 часа)')
+    parser.add_argument('--rate', default=4, type=int, help='Введите частоту публикаций (по умолчанию стоит раз в 4 часа)')
     args = parser.parse_args()
     load_dotenv()
     tg_token = os.environ["TG_TOKEN"]

@@ -1,4 +1,3 @@
-from uu import Error
 import requests
 import os
 import telegram
@@ -13,7 +12,7 @@ def get_images(path):
     return images
 
 
-def dwnld_image(url, path):
+def download_image(url, path):
     response = requests.get(url)
     response.raise_for_status()
     with open(path, 'wb') as file:
@@ -28,4 +27,4 @@ def get_file_ext(url):
 def send_message(tg_token, chat_token, file):
     bot = telegram.Bot(token=tg_token)
     with open(file, 'rb') as image:
-        bot.send_document(chat_id=chat_token, document=image)
+        bot.send_document(chat_id=chat_token, document=image) # type: ignore

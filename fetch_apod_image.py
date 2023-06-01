@@ -1,7 +1,7 @@
 import requests
 import os
 import argparse
-from download_image_and_file_extension_and_get_images import dwnld_image, get_file_ext
+from utils import download_image, get_file_ext
 from dotenv import load_dotenv
 
 
@@ -18,11 +18,10 @@ def fetch_apod(header, count, path):
             if image["hdurl"]:
                 images.append(image["hdurl"])
             images.append(image["url"])
+    images = images[:count]
     for image_num, image in enumerate(images):
         filename = os.path.join('{}{}{}{}'.format(path, 'nasa_apod_', image_num, get_file_ext(image)))
-        dwnld_image(image, filename)
-        if image_num == count - 1:
-            break
+        download_image(image, filename)
 
 
 def main():

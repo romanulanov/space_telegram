@@ -1,7 +1,7 @@
 import requests
 import os
 import argparse
-from download_image_and_file_extension_and_get_images import dwnld_image, get_file_ext
+from utils import dwnld_image, get_file_ext
 
 
 SPACEX_URL = 'https://api.spacexdata.com/v5/launches/'
