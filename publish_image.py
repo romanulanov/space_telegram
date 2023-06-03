@@ -1,9 +1,8 @@
 import argparse
 import os
-import random 
+import random
 from dotenv import load_dotenv
 from utils import get_images, send_message
-
 
 
 def publish_image(tg_token, chat_token, path, image_name):

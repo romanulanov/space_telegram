@@ -31,7 +31,7 @@ def main():
         except telegram.error.NetworkError:
             logging.error('Ошибка сети. Попробую переподключиться через минуту.')
             eprint(sys.stderr)
-            sleep(60)            
+            sleep(60)
             pass
 
 

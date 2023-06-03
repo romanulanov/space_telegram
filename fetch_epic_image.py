@@ -20,8 +20,7 @@ def fetch_epic(token, count, path):
         response.raise_for_status()
         filename = os.path.join('{}{}{}{}'.format(path, 'nasa_epic_', image_num, get_file_ext(image)))
         download_image(response.url, filename)
-        
-      
+
 
 def main():
     load_dotenv()
